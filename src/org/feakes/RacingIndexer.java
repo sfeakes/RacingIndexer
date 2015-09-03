@@ -70,7 +70,6 @@ public class RacingIndexer {
     boolean justImages = false;
     boolean badCmdline = false;
     int minScore = -1;
-    @SuppressWarnings("unused")
     String leagueID = null;
     String inputname = null;
     String outputdir = null;
