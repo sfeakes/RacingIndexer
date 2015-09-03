@@ -1,0 +1,106 @@
+# Thu Aug 27 18:51:19 CDT 2015
+#
+# For testing regular expressions below, these resources are useful.
+# There are a lot of regexp in this config file, so if you want to
+# customize it's worth reading up on Java regular expresions.
+# http://www.ocpsoft.org/tutorials/regular-expressions/java-visual-regex-tester/
+# http://www.regexplanet.com/advanced/java/index.html
+# 
+#
+
+# The default root directory to place the renamed files in, sub directories will be created
+# this according to the value of outputFormat 
+outputDirectory=C:\\temp\\sportsdb
+
+# Where to store the cached content from thesportsdb
+dbcachedir=.\\cache
+
+# API key for thesportsdb
+thesportsdb_apikey=9124689124922
+
+# If output file exists, overwrite it?
+overwriteExisting=false
+
+# If a directory is passed on the command line rather than a file, pick rename all files 
+# from the directory
+recursive=yes
+
+# testMost will not actually rename any files, just print out what matched
+testMode=false
+
+# create a file with identical name to media file but with .summary extension, the content
+# of this file will be information about the media file
+summaryFile=true
+
+# minScore to consider a match. 50 is loose, 90 is strict. Each tile is matched against sportsdb
+# content and given a score for what parts matches, example 40 points if title matches, 30 points if round matches
+# 20 for country etc etc.  This sets the threshold as to what is considered a match, use the -d flag along with -t on the
+# command line to see the score of your files to set this threshold to your content.
+minScore=50
+
+# Set the output format for matched files.
+# {n} = Event Name "strEvent" from JSON
+# {S} = Season "strSeason" from JSON
+# {d} = Date "dateEvent" from JSON
+# {r} = Round "intRound" from JSON
+# {e} = country/eppisode "strRaceCountry" from JSON
+# {rq} = Race or Qualifying, the typeXraceSuffix or typeXqualSuffix
+outputFormat=\\{n}\\{n} - {s}\\{n} - {d} - Round {r} - {e}{rq}
+
+
+# This si where it get's complicated.
+# Setup a java regular expression to match filenames and split the individual parts or groups. You must
+# have at least 5 match groups, and the index number of each group must also be noted with the 5 xyzGroup propities.
+# The below will work for file name in the colloring format.
+# <race type><year in 4 digit form><round number in 2 digit form with the rord 'round' before it><race title><extra value to search> 
+# eg MotoGP.2015.Round10.USA.Indianapolis.Race.WEB-RIP.MPEG-2.English-CasStudio.ts
+filenameregexp=(?i)(.*)(\\d{4}).*round\\W*(\\d+)\\W*(\\w+)\\W*(.*)
+nameMatchGroup=1
+yearMatchGroup=2
+roundMatchGroup=3
+titleMatchGroup=4
+extraMatchGroup=5
+
+# Any file extensions to include or ignore in a regexp format.
+# The next list is an example to match any file extension.
+#fileextensionregexp=(?i).*   
+# This just matches the extensions listed
+fileextensionregexp=(?i).*(\.)(avi|wmv|ts|mpg|mpeg|mov|mkv|mp4|asx)
+
+# Some content may be qualifying or race media for the same race event. So the exact same file name would not work.
+# You can seperate content searching this regexp, but it depends on 2 other items
+# 1) The {rq} option must be listed on the outputFormat property
+# 2) You must use the specific type content listed later on and use typeXraceSuffix, typeXqualSuffix propertys
+qualifyingregexp=(?i)(.*)(qualifying|qual|quali)(.*)
+
+
+# The rest is for advanced usage, and optional.
+# Some content simply can;t be matched against the sportsdb at the moment, for example sportsbd uses 
+# 'FIA Formula One World Championship' for F1, and most media file names will be 'F1' 'Formula 1' 'Formula One' etc,
+# There are just too many variables to code this for everything to work, so here is where you can customise this
+# match to make it work for your content.
+# typeXName = is what YOU want to call the content, not used for matching, it's used in the {n} param of outputFormat
+# typeXDBID = The thesportsDB ID for this race type. http://www.thesportsdb.com/league/4370   <-- That's the ID for F1
+# typeXRegex = The regex to use to match filnames, this will be use to match against the nameMatchGroup in the filenameregexp
+# typeXIgnoreRegex = <optional> if you want to ignore certian files, this regex is used. (for F1 below, it will ignore any file with Pre or Post in the filename
+# typeXraceSuffix = <optional> Word to use in filename to indicate it's a race. If you want to start with a leading space, you must use "
+# typeXqualSuffix = <optional> Word to use in filename to indicate it's a qualifying. If you want to start with a leading space, you must use "
+# 
+# You can have as many of these as you like, but you must replace X with a number and it MUST start a 1 and be in sequance.
+
+type1Name = Formula 1
+type1DBID = 4370
+type1Regex = (?i).*(Formula\\W*1|Formula\\W*one).*
+type1IgnoreRegex = (?i).*(\\W|^)(Pre\\W|Post\\W).*
+type1raceSuffix = " Race"
+type1qualSuffix = " Qualifying"
+
+type2Name = MotoGP
+type2DBID = 4407
+type2Regex = (?i).*(moto\\W*gp).*
+
+type3Name = WRC
+type3DBID = 4409
+type3Regex = (?i).*(wrc|world\\W*rally\\W*champ.*).*
+
+
