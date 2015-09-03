@@ -23,9 +23,14 @@ public class riImageDownloader {
   private final static Logger logger     = Logger.getLogger(RacingIndexer.class.getName());
   
   
-  public riImageDownloader() {
-    for (int i = 0; i < config.riDetails.size(); i++) {
-      downLeague(config.riDetails.get(i));
+  public riImageDownloader(String leagueID) {
+    
+    if (leagueID == null) {
+      for (int i = 0; i < config.riDetails.size(); i++) {
+        downLeague(config.riDetails.get(i));
+      }
+    } else {
+      downLeague(new riDetail(leagueID, leagueID));
     }
     
   }
@@ -34,7 +39,7 @@ public class riImageDownloader {
   private void downLeague(riDetail rid) {
 
     try {      
-      String content = riSportsDB.lookupLeague(rid.getName(), rid.getDBID());
+      String content = riSportsDB.lookupLeague(rid.getDBID());
       
       if (content == null)
         return;

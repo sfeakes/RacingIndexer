@@ -100,7 +100,7 @@ public class riFileMatcher {
     
     String output = config.outputDirectory + config.outputFormat + extension;
 
-    String content = riSportsDB.lookupSeason(rid.getName(), fyear,  rid.getDBID());
+    String content = riSportsDB.lookupSeason(fyear,  rid.getDBID());
     
     if (content == null)
       return null;

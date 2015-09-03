@@ -49,7 +49,7 @@ public class RacingIndexer {
     System.out.println("  -m number = minimum score for match, MUST BE NUMBER");
     System.out.println("  -t = test mode, just print outut");
     System.out.println("  -s = just create summary files");
-    System.out.println("  -i = just download images for leagues, config file will be used for ID's");
+    System.out.println("  -i <ID> just download images for leagues, config file will be used for ID's if ID is not passed");
   }
 
   public static void main(String[] args) {
@@ -117,9 +117,10 @@ public class RacingIndexer {
               logLevel = Level.ALL;
               break;
             case 'm':
-              try {
+              if (args[i].matches("^\\d+$"))
+              {
                 minScore = Integer.parseInt(args[i++]);
-              } catch (Exception e) {
+              } else {
                 logger.log(Level.SEVERE, "Must pass number and next parameter after -m on commandline");
                 badCmdline = true;
               }
@@ -132,7 +133,8 @@ public class RacingIndexer {
               break;
             case 'i':
               justImages = true;
-              leagueID = args[i++];
+              if (i < args.length && args[i].matches("^\\d+$"))
+                leagueID = args[i++];
               break;
             default:
               logger.log(Level.WARNING, "ParseCmdLine: illegal option passed " + flag);
@@ -140,11 +142,11 @@ public class RacingIndexer {
             }
           }
         }
-      }
+      }/*
       if (i == args.length || badCmdline) {
         printUsage();
         return;
-      }
+      }*/
     } catch (Exception e) {
       printUsage();
       return;
@@ -153,6 +155,9 @@ public class RacingIndexer {
     if (inputname == null)
       inputname = args[args.length - 1];
 
+    if (badCmdline)
+      printUsage();
+    
     riConfig config = riConfig.getInstance();
 
     // Now the cfg had loaded, (AFTER param incase cfglocation passed) Set the
@@ -185,7 +190,7 @@ public class RacingIndexer {
     logger.log(Level.FINEST, "Start!");
 
     if (justImages)
-      new riImageDownloader();
+      new riImageDownloader(leagueID);
     else
       processName(inputname);
 

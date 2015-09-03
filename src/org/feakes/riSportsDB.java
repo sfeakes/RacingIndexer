@@ -27,19 +27,19 @@ public class riSportsDB {
     return read(dburl, dbfname);
   }
   
-  public static String lookupLeague(String leagueName, String leagueID) 
+  public static String lookupLeague(String leagueID) 
   {
     String dburl = new String("http://www.thesportsdb.com/api/v1/json/" + config.apiKey + "/lookupleague.php?id=" + leagueID);
-    String dbfname = new String(leagueName + "-" + leagueID + ".ridb");
+    String dbfname = new String(leagueID + ".ridb");
     
     return read(dburl, dbfname);
   }
 
   
-  public static String lookupSeason(String leagueName, String season, String leagueID) 
+  public static String lookupSeason(String season, String leagueID) 
   {
     String dburl = new String("http://www.thesportsdb.com/api/v1/json/" + config.apiKey + "/eventsseason.php?id=" + leagueID + "&s="  + season);
-    String dbfname = new String(leagueName + "-" + leagueID + "-" + season + ".ridb");
+    String dbfname = new String(leagueID + "-" + season + ".ridb");
     
     return read(dburl, dbfname);
   }
