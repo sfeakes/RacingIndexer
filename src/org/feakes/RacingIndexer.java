@@ -182,15 +182,6 @@ public class RacingIndexer {
     handler.setLevel(logLevel);
     
     logger.log(Level.FINEST, "[CONFIG] :-"+config.toString());
-    /*
-    riLogFormatter formatter = new riLogFormatter();
-    ConsoleHandler handler = new ConsoleHandler();
-    handler.setFormatter(formatter);
-    // PUBLISH this level
-    handler.setLevel(logLevel);
-    logger.setUseParentHandlers(false);
-    logger.addHandler(handler);
-*/
     logger.log(Level.FINEST, "Start!");
 
     if (justImages)
