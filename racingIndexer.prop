@@ -63,7 +63,7 @@ extraMatchGroup=5
 
 # Any file extensions to include or ignore in a regexp format.
 # The next list is an example to match any file extension.
-#fileextensionregexp=(?i).*   
+# fileextensionregexp=(?i).*   
 # This just matches the extensions listed
 fileextensionregexp=(?i).*(\.)(avi|wmv|ts|mpg|mpeg|mov|mkv|mp4|asx)
 
