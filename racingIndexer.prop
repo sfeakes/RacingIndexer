@@ -6,7 +6,7 @@
 # http://www.ocpsoft.org/tutorials/regular-expressions/java-visual-regex-tester/
 # http://www.regexplanet.com/advanced/java/index.html
 # 
-#
+# TEST
 
 # The default root directory to place the renamed files in, sub directories will be created
 # this according to the value of outputFormat 
