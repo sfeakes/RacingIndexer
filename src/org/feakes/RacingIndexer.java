@@ -82,6 +82,11 @@ public class RacingIndexer {
     logger.setUseParentHandlers(false);
     logger.addHandler(handler);
 
+    if ( args.length < 1 ){
+        printUsage();
+        return;
+      }
+    
     try {
       while (i < args.length && args[i].startsWith("-")) {
         arg = args[i++];
