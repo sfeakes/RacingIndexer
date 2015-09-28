@@ -46,6 +46,7 @@ public class riConfig extends Properties {
   public  final String extraMatchGroup = "extra";
   
   public int minScore = 80;
+  public long minFilesize = 0;
   public boolean thesportsdb_fix2015F1roundIndex = false;
   public boolean overwriteExisting = false;
   public boolean recursive = false;
@@ -89,6 +90,22 @@ public class riConfig extends Properties {
     
     return null;
   }
+  private int getIntegerProperty(String value, int defaultRtn)
+  {
+    try {
+      return Integer.parseInt(super.getProperty(value));
+    } catch (Exception e) {}
+    
+    return defaultRtn;
+  }
+  private long getLongProperty(String value, long defaultRtn)
+  {
+    try {
+      return Long.parseLong(super.getProperty(value));
+    } catch (Exception e) {}
+    
+    return defaultRtn;
+  }
   
   protected riConfig(String cfile) {
 
@@ -118,7 +135,9 @@ public class riConfig extends Properties {
       titleMatchGroup = Integer.parseInt(super.getProperty("titleMatchGroup"));
       extraMatchGroup = Integer.parseInt(super.getProperty("extraMatchGroup"));
       */
-      minScore = Integer.parseInt(super.getProperty("minScore"));
+      //minScore = Integer.parseInt(super.getProperty("minScore"));
+      minScore = getIntegerProperty("minFilesize", minScore);
+      minFilesize = getLongProperty("minFilesize", minFilesize);
       
       thesportsdb_fix2015F1roundIndex = getBooleanProperty("thesportsdb_fix2015F1roundIndex");
       

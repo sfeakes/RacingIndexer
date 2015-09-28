@@ -95,6 +95,8 @@ public class riSportsDB {
       }
     }
     
+    content = content.substring(content.indexOf('['), content.lastIndexOf(']') + 1);
+    
     return content;
   }
 

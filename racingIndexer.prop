@@ -38,6 +38,11 @@ summaryFile=true
 # command line to see the score of your files to set this threshold to your content.
 minScore=50
 
+
+#Minimum file size, will ignore any files smaller that this (in bytes)
+# 100MB = 100000000
+#minFilesize=100000000
+
 # Set the output format for matched files.
 # {n} = Event Name "strEvent" from JSON
 # {S} = Season "strSeason" from JSON
@@ -45,34 +50,31 @@ minScore=50
 # {r} = Round "intRound" from JSON
 # {e} = country/eppisode "strRaceCountry" from JSON
 # {rq} = Race or Qualifying, the typeXraceSuffix or typeXqualSuffix
+#
 outputFormat=\\{n}\\{n} - {s}\\{n} - {d} - Round {r} - {e}{rq}
 
 
 # This si where it get's complicated.
 # Setup a java regular expression to match filenames and split the individual parts or groups. You must
-# have at least 5 match groups, and the index number of each group must also be noted with the 5 xyzGroup propities.
+# have at least 5 match groups, and they must be named ( name, year, round, title, extra )
 # The below will work for file name in the colloring format.
 # <race type><year in 4 digit form><round number in 2 digit form with the rord 'round' before it><race title><extra value to search> 
 # eg MotoGP.2015.Round10.USA.Indianapolis.Race.WEB-RIP.MPEG-2.English-CasStudio.ts
-#filenameregexp=(?i)(.*)(\\d{4}).*round\\W*(\\d+)\\W*(\\w+)\\W*(.*)
-#nameMatchGroup=1
-#yearMatchGroup=2
-#roundMatchGroup=3
-#titleMatchGroup=4
-#extraMatchGroup=5
-
+#
 filenameregexp=(?i)(?<name>.*)(?<year>\\d{4})(.*round\\W*|.*stage\\W*|x)(?<round>\\d+)\\W*(?<title>\\w+)\\W*(?<extra>.*)
 
 # Any file extensions to include or ignore in a regexp format.
 # The next list is an example to match any file extension.
 # fileextensionregexp=(?i).*   
 # This just matches the extensions listed
+#
 fileextensionregexp=(?i).*(\.)(avi|wmv|ts|mpg|mpeg|mov|mkv|mp4|asx)
 
 # Some content may be qualifying or race media for the same race event. So the exact same file name would not work.
 # You can seperate content searching this regexp, but it depends on 2 other items
 # 1) The {rq} option must be listed on the outputFormat property
 # 2) You must use the specific type content listed later on and use typeXraceSuffix, typeXqualSuffix propertys
+#
 qualifyingregexp=(?i)(.*)(qualifying|qual|quali)(.*)
 
 

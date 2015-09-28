@@ -51,7 +51,7 @@ public class riFileMatcher {
       if (! configMatched) {
       // if we get here, none of the pre-matched config worked, let's try Generic
         String content = riSportsDB.lookupMotorsports();
-        content = content.substring(content.indexOf('['), content.lastIndexOf(']') + 1);
+        //content = content.substring(content.indexOf('['), content.lastIndexOf(']') + 1);
         JSONArray jsonArray = new JSONArray(content);
         for (int i = 0; i < jsonArray.length(); i++) {
           JSONObject json_data = jsonArray.getJSONObject(i);
@@ -105,7 +105,7 @@ public class riFileMatcher {
     if (content == null)
       return null;
     
-    content = content.substring(content.indexOf('['), content.lastIndexOf(']') + 1);
+    //content = content.substring(content.indexOf('['), content.lastIndexOf(']') + 1);
 
     // Needs try catch
     JSONArray jsonArray = new JSONArray(content);

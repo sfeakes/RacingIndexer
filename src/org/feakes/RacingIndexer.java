@@ -244,6 +244,9 @@ public class RacingIndexer {
       } else if (config.fileextensionregexp != null && !name.matches(config.fileextensionregexp)) {
         logger.log(Level.INFO, "[IGNORE] file extension failed match :" + name);
         return false;
+      } else if (config.minFilesize > 0 && file.length() < config.minFilesize ) {
+        logger.log(Level.INFO, "[IGNORE] file is too small :" + name);
+        return false;
       }
 
       // riFileMatcher match = new riFileMatcher(name);

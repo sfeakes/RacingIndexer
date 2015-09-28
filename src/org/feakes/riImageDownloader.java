@@ -44,7 +44,7 @@ public class riImageDownloader {
       if (content == null)
         return;
       
-      content = content.substring(content.indexOf('['), content.lastIndexOf(']') + 1);
+      //content = content.substring(content.indexOf('['), content.lastIndexOf(']') + 1);
 
       JSONArray jsonArray = new JSONArray(content);
       // Should be the first object in the array
