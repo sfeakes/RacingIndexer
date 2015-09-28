@@ -269,14 +269,14 @@ public class RacingIndexer {
           File[] findfs = findFilenamesMatchingRegex(config.fileextensionregexp, new java.io.File(newFile.getParent()));
           if ( findfs != null) {
             logger.log(Level.WARNING,
-                "Target media file already exists in different format, "+ findfs[0] +" ignoring copying : " + name + " to " + match.getOutputFile());
+                "[IGNORE] Target media file already exists in different format, "+ findfs[0] +" ignoring copying : " + name + " to " + match.getOutputFile());
             return false;
           }
         }
         
         if (newFile.exists() && config.overwriteExisting == false) {
           logger.log(Level.WARNING,
-              "Target file already exists, ignoring copying : " + name + " to " + match.getOutputFile());
+              "[IGNORE] Target file already exists, ignoring copying : " + name + " to " + match.getOutputFile());
           return false;
         }
 
