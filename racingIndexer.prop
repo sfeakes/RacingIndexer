@@ -54,12 +54,14 @@ outputFormat=\\{n}\\{n} - {s}\\{n} - {d} - Round {r} - {e}{rq}
 # The below will work for file name in the colloring format.
 # <race type><year in 4 digit form><round number in 2 digit form with the rord 'round' before it><race title><extra value to search> 
 # eg MotoGP.2015.Round10.USA.Indianapolis.Race.WEB-RIP.MPEG-2.English-CasStudio.ts
-filenameregexp=(?i)(.*)(\\d{4}).*round\\W*(\\d+)\\W*(\\w+)\\W*(.*)
-nameMatchGroup=1
-yearMatchGroup=2
-roundMatchGroup=3
-titleMatchGroup=4
-extraMatchGroup=5
+#filenameregexp=(?i)(.*)(\\d{4}).*round\\W*(\\d+)\\W*(\\w+)\\W*(.*)
+#nameMatchGroup=1
+#yearMatchGroup=2
+#roundMatchGroup=3
+#titleMatchGroup=4
+#extraMatchGroup=5
+
+filenameregexp=(?i)(?<name>.*)(?<year>\\d{4})(.*round\\W*|.*stage\\W*|x)(?<round>\\d+)\\W*(?<title>\\w+)\\W*(?<extra>.*)
 
 # Any file extensions to include or ignore in a regexp format.
 # The next list is an example to match any file extension.

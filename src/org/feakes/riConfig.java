@@ -32,11 +32,19 @@ public class riConfig extends Properties {
   public String dbcachedir;
   public String fileextensionregexp;
   
+  /*
   public int nameMatchGroup;
   public int yearMatchGroup;
   public int roundMatchGroup;
   public int titleMatchGroup;
   public int extraMatchGroup;
+  */
+  public  final String nameMatchGroup = "name";
+  public  final String yearMatchGroup = "year";
+  public  final String roundMatchGroup = "round";
+  public  final String titleMatchGroup = "title";
+  public  final String extraMatchGroup = "extra";
+  
   public int minScore = 80;
   public boolean thesportsdb_fix2015F1roundIndex = false;
   public boolean overwriteExisting = false;
@@ -103,12 +111,13 @@ public class riConfig extends Properties {
       qualifyingregexp = getStringProperty("qualifyingregexp");
       dbcachedir = getStringProperty("dbcachedir");
       fileextensionregexp = getStringProperty("fileextensionregexp");
-      
+     /* 
       nameMatchGroup = Integer.parseInt(super.getProperty("nameMatchGroup"));
       yearMatchGroup = Integer.parseInt(super.getProperty("yearMatchGroup"));
       roundMatchGroup = Integer.parseInt(super.getProperty("roundMatchGroup"));
       titleMatchGroup = Integer.parseInt(super.getProperty("titleMatchGroup"));
       extraMatchGroup = Integer.parseInt(super.getProperty("extraMatchGroup"));
+      */
       minScore = Integer.parseInt(super.getProperty("minScore"));
       
       thesportsdb_fix2015F1roundIndex = getBooleanProperty("thesportsdb_fix2015F1roundIndex");
