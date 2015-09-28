@@ -50,6 +50,7 @@ public class RacingIndexer {
     System.out.println("  -t = test mode, just print outut");
     System.out.println("  -s = just create summary files");
     System.out.println("  -i <ID> just download images for leagues, config file will be used for ID's if ID is not passed");
+    System.out.println("  -e <eventID> Don't try to match file name, force match with Event ID from www.thesportsdb.com"); 
   }
 
   public static void main(String[] args) {
@@ -73,6 +74,7 @@ public class RacingIndexer {
     String leagueID = null;
     String inputname = null;
     String outputdir = null;
+    String eventID = null;
     
     riLogFormatter formatter = new riLogFormatter();
     ConsoleHandler handler = new ConsoleHandler();
@@ -140,6 +142,10 @@ public class RacingIndexer {
               if (i < args.length && args[i].matches("^\\d+$"))
                 leagueID = args[i++];
               break;
+            case 'e':
+              if (i < args.length && args[i].matches("^\\d+$"))
+                eventID = args[i++];
+              break;
             default:
               logger.log(Level.WARNING, "ParseCmdLine: illegal option passed " + flag);
               break;
@@ -196,7 +202,7 @@ public class RacingIndexer {
     if (justImages)
       new riImageDownloader(leagueID);
     else
-      processName(inputname);
+      processName(inputname, eventID);
 
     logger.log(Level.FINEST, "Finish!");
 
@@ -204,8 +210,8 @@ public class RacingIndexer {
     return;
   }
 
-  private static boolean processName(String name) {
-    return processName(name, false);
+  private static boolean processName(String name, String eventID) {
+    return processName(name, false, eventID);
   }
 
   /** Finds files in the specified directory whose names match regex */
@@ -213,7 +219,7 @@ public class RacingIndexer {
       return dir.listFiles(file -> file.getName().matches(regex));
   }
   
-  private static boolean processName(String name, boolean usePath) {
+  private static boolean processName(String name, boolean usePath, String eventID) {
 
     riConfig config = riConfig.getInstance();
 
@@ -233,7 +239,7 @@ public class RacingIndexer {
           if (Files.isRegularFile(filePath)) {
             if (config.recursive) {
               // Simply call yourself to itterate over each file
-              processName(filePath.toString(), true);
+              processName(filePath.toString(), true, eventID);
             } else {
               // System.out.println(filePath);
               // System.out.println("Need to add code here to work out what file
@@ -258,9 +264,9 @@ public class RacingIndexer {
       riFileMatcher match = null;
 
       if (usePath)
-        match = new riFileMatcher(file.getParent() + "/" + file.getName());
+        match = new riFileMatcher(file.getParent() + "/" + file.getName(), eventID);
       else
-        match = new riFileMatcher(file.getName());
+        match = new riFileMatcher(file.getName(), eventID);
 
       if (match.getOutputFile() != null) {
         File newFile = new java.io.File(match.getOutputFile());

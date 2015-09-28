@@ -137,7 +137,7 @@ public class riConfig extends Properties {
       extraMatchGroup = Integer.parseInt(super.getProperty("extraMatchGroup"));
       */
       //minScore = Integer.parseInt(super.getProperty("minScore"));
-      minScore = getIntegerProperty("minFilesize", minScore);
+      minScore = getIntegerProperty("minScore", minScore);
       minFilesize = getLongProperty("minFilesize", minFilesize);
       
       thesportsdb_fix2015F1roundIndex = getBooleanProperty("thesportsdb_fix2015F1roundIndex");

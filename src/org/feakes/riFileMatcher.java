@@ -21,10 +21,31 @@ public class riFileMatcher {
   private final static Logger logger     = Logger.getLogger(RacingIndexer.class.getName());
   private String              outputFile = null;
 
-  public riFileMatcher(String filename) throws Exception {
+
+  public riFileMatcher(String filename, String eventID) throws Exception {
 
     Pattern filenamePattern = Pattern.compile(config.masterRegex);
 
+    if (eventID != null) { // This is kind-a a hack, if we have an ID, pass all the appropiate into fo the matcher.
+      String content = riSportsDB.lookupEvent(eventID);
+      
+      if (content == null) {
+        logger.log(Level.SEVERE, "Can't find event in thesportsdb.com content eventid='"+eventID+"'");
+        return;
+      }
+      JSONArray jsonArray = new JSONArray(content);
+      JSONObject json_data = jsonArray.getJSONObject(0);
+      
+      riDetail rid = new riDetail(json_data.getString("strLeague"), json_data.getString("idLeague"));
+      
+      outputFile = readDB(rid, json_data.getString("strSeason"),
+                                      json_data.getIntNoException("intRound"), 
+                                      json_data.getString("strEvent"),
+                                      filename, 
+                                      getFileExtension(filename));
+      return;
+    }
+    
     Matcher m = filenamePattern.matcher(filename);
     if (m.find()) {
       boolean configMatched = false;
@@ -82,10 +103,12 @@ public class riFileMatcher {
     return outputFile;
   }
 
+  
   private String readDB(riDetail rid, String fyear, int fround, String fname, String fextra, String extension)
       throws Exception {
     // public static String readDB(String url, String year, int round, String
     // locationName) throws Exception {
+    final int MATCH_EVENT=50;
     final int MATCH_ROUND=50;
     final int MATCH_JSON_INDEX=20;
     final int MATCH_COUNTRY=40;
@@ -147,6 +170,15 @@ public class riFileMatcher {
           round = round2;
           logger.log(Level.FINEST, "   - Matched round on 2nd call - JSON parser bug");
         } 
+        
+        // score the event match (unlightly this matches)
+        if (fname.matches("(?i).*" + event + ".*")) {
+          score[i] += MATCH_EVENT;
+          logger.log(Level.FINEST, "   - Matched event");
+        } else if (event.contains(fname)) {
+          score[i] += (MATCH_EVENT / 2);
+          logger.log(Level.FINEST, "   - Matched some words in event");
+        }
         
         // score the country match
         if (fname.matches("(?i).*" + country + ".*")) {

@@ -44,12 +44,23 @@ public class riSportsDB {
     return read(dburl, dbfname);
   }
   
+  public static String lookupEvent(String eventID) 
+  {
+    String dburl = new String("http://www.thesportsdb.com/api/v1/json/" + config.apiKey + "/lookupevent.php?id=" + eventID);
+    //String dbfname = new String(leagueID + "-" + season + ".ridb");
+    
+    return read(dburl);
+  }
+  
+  private static String read(String url) {
+    return read(url, null);
+  }
   //public static String lookupSeason(String leagueName, String season, String leagueID) {
   private static String read(String url, String dbfname) {
     
     String content = null;
 
-    if (config.dbcachedir != null) {
+    if (config.dbcachedir != null && dbfname != null) {
       try {
         dbfname  = config.dbcachedir+"/"+dbfname;
         File cache = new File(dbfname);

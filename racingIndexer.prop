@@ -28,7 +28,7 @@ recursive=yes
 # testMost will not actually rename any files, just print out what matched
 testMode=false
 
-# Allow duplicate media files is F1-race.avi AND F1-race.mkv
+# Allow duplicate media files ie F1-race.avi AND F1-race.mkv
 allowDuplicateMedia=false
 
 # create a file with identical name to media file but with .summary extension, the content
