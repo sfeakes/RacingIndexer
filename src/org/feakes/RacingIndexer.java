@@ -208,6 +208,11 @@ public class RacingIndexer {
     return processName(name, false);
   }
 
+  /** Finds files in the specified directory whose names match regex */
+  public static File[] findFilenamesMatchingRegex(String regex, File dir) {
+      return dir.listFiles(file -> file.getName().matches(regex));
+  }
+  
   private static boolean processName(String name, boolean usePath) {
 
     riConfig config = riConfig.getInstance();
@@ -259,7 +264,16 @@ public class RacingIndexer {
 
       if (match.getOutputFile() != null) {
         File newFile = new java.io.File(match.getOutputFile());
-
+        
+        if ( config.allowDuplicateMedia == false) {
+          File[] findfs = findFilenamesMatchingRegex(config.fileextensionregexp, new java.io.File(newFile.getParent()));
+          if ( findfs != null) {
+            logger.log(Level.WARNING,
+                "Target media file already exists in different format, "+ findfs[0] +" ignoring copying : " + name + " to " + match.getOutputFile());
+            return false;
+          }
+        }
+        
         if (newFile.exists() && config.overwriteExisting == false) {
           logger.log(Level.WARNING,
               "Target file already exists, ignoring copying : " + name + " to " + match.getOutputFile());
@@ -290,5 +304,6 @@ public class RacingIndexer {
 
     return false;
   }
+
 
 }

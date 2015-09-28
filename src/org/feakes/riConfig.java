@@ -53,6 +53,7 @@ public class riConfig extends Properties {
   public boolean testMode = false;
   public boolean summaryFile = false;
   public boolean justSummaryFiles = false;
+  public boolean allowDuplicateMedia = false;
   
   public riDetailList riDetails = new riDetailList();
 
@@ -146,6 +147,7 @@ public class riConfig extends Properties {
       recursive  = getBooleanProperty("recursive");
       testMode  = getBooleanProperty("testMode");
       summaryFile = getBooleanProperty("summaryFile");
+      allowDuplicateMedia = getBooleanProperty("allowDuplicateMedia");
               
       for (int i = 1; i < 10; i++) {
         try {
