@@ -36,7 +36,18 @@ public class riFileMatcher {
       JSONArray jsonArray = new JSONArray(content);
       JSONObject json_data = jsonArray.getJSONObject(0);
       
-      riDetail rid = new riDetail(json_data.getString("strLeague"), json_data.getString("idLeague"));
+      String idLegue = json_data.getString("idLeague");
+      riDetail rid = null;
+      
+      for (int i = 0; i < config.riDetails.size(); i++) {
+        if ( idLegue.compareTo(config.riDetails.get(i).getDBID()) == 0) {
+          rid = config.riDetails.get(i);
+        }
+      }
+      
+      if (rid == null) {
+        rid = new riDetail(json_data.getString("strLeague"), idLegue);
+      }
       
       outputFile = readDB(rid, json_data.getString("strSeason"),
                                       json_data.getIntNoException("intRound"), 
