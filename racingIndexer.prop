@@ -47,14 +47,18 @@ minScore=50
 #minFilesize=100000000
 
 # Set the output format for matched files.
-# {n} = Event Name "strEvent" from JSON
+# {n} = Race Legue Name
 # {S} = Season "strSeason" from JSON
 # {d} = Date "dateEvent" from JSON
 # {r} = Round "intRound" from JSON
-# {e} = country/eppisode "strRaceCountry" from JSON
+# {e} = Event Name "strEvent" from JSON
+# {c} = country
+# {y} = city
+# {t} = circuit/track
 # {rq} = Race or Qualifying, the typeXraceSuffix or typeXqualSuffix
 #
-outputFormat=\\{n}\\{n} - {s}\\{n} - {d} - Round {r} - {e}{rq}
+#outputFormat=\\{n}\\{n} - {s}\\{n} - {d} - Round {r} - {e}{rq}
+outputFormat=\\{n}\\{n} - {s}\\{n} - {d} - Round {r} - {c} {t}{rq}
 
 
 # This si where it get's complicated.

@@ -130,6 +130,8 @@ public class riFileMatcher {
     String season;
     String date;
     String country;
+    String city;
+    String circuit;
     int round;
     
     String output = config.outputDirectory + config.outputFormat + extension;
@@ -157,7 +159,8 @@ public class riFileMatcher {
          event = json_data.getString("strEvent");
          season = json_data.getString("strSeason");
         //String date = json_data.getString("dateEvent");
-         country = json_data.getString("strRaceCountry");
+         //country = json_data.getString("strRaceCountry");
+         country = json_data.getString("strCountry");
          round = json_data.getIntNoException("intRound");
         int round2 = json_data.getIntNoException("intRound");  // Bug with some JSON that causes only the 2nd call to be accurate
 
@@ -240,7 +243,10 @@ public class riFileMatcher {
        event = json_data.getString("strEvent");
        season = json_data.getString("strSeason");
        date = json_data.getString("dateEvent");
-       country = json_data.getString("strRaceCountry");
+       //country = json_data.getString("strRaceCountry");
+       country = json_data.getString("strCountry");
+       city = json_data.getString("strCity");
+       circuit = json_data.getString("strCircuit");
        round = json_data.getIntNoException("intRound");
       
       if (round == -1){round = fround;}
@@ -261,6 +267,8 @@ public class riFileMatcher {
       output = output.replaceAll("\\{s\\}", season);
       output = output.replaceAll("\\{d\\}", date);
       output = output.replaceAll("\\{c\\}", country);
+      output = output.replaceAll("\\{t\\}", circuit);
+      output = output.replaceAll("\\{y\\}", city);
       output = output.replaceAll("\\{r\\}", String.format("%02d", round));
       output = output.replaceAll("\\{rq\\}", racetype);
 
@@ -268,9 +276,12 @@ public class riFileMatcher {
       
       if (config.summaryFile == true) {
         
-        String eventCircuit = json_data.getStringNoException("strRaceCircuit");
-        String eventCountry = json_data.getStringNoException("strRaceCountry");
-        String eventLocation = json_data.getStringNoException("strRaceLocality");
+        //String eventCircuit = json_data.getStringNoException("strRaceCircuit");
+        //String eventCountry = json_data.getStringNoException("strRaceCountry");
+        //String eventLocation = json_data.getStringNoException("strRaceLocality");
+        String eventCircuit = json_data.getStringNoException("strCircuit");
+        String eventCountry = json_data.getStringNoException("strCountry");
+        String eventLocation = json_data.getStringNoException("strCity");
         String eventDescription = json_data.getStringNoException("strDescriptionEN");
 
         StringBuilder summaryBuilder = new StringBuilder(1000);
