@@ -35,13 +35,16 @@ public class riSportsDB {
     return read(dburl, dbfname);
   }
 
-  
   public static String lookupSeason(String season, String leagueID) 
+  {
+    return lookupSeason( season,  leagueID, false); 
+  }
+  public static String lookupSeason(String season, String leagueID, boolean localOnly) 
   {
     String dburl = new String("http://www.thesportsdb.com/api/v1/json/" + config.apiKey + "/eventsseason.php?id=" + leagueID + "&s="  + season);
     String dbfname = new String(leagueID + "-" + season + ".ridb");
     
-    return read(dburl, dbfname);
+    return read(dburl, dbfname, localOnly, false);
   }
   
   public static String lookupEvent(String eventID) 
@@ -52,21 +55,32 @@ public class riSportsDB {
     return read(dburl);
   }
   
+  public static String lookupDemonym(String country) 
+  {
+    String dburl = new String("http://restcountries.eu/rest/v1/name/" + country);
+
+    return read(dburl, null, false, true);
+  }
+  
   private static String read(String url) {
     return read(url, null);
   }
   //public static String lookupSeason(String leagueName, String season, String leagueID) {
   private static String read(String url, String dbfname) {
+    return read(url, dbfname, false, false);
+  }
+    
+  private static String read(String url, String dbfname, boolean localOnly, boolean ignoreException) {
     
     String content = null;
 
-    if (config.dbcachedir != null && dbfname != null) {
+    if ((config.dbcachedir != null && dbfname != null) || localOnly == true) {
       try {
         dbfname  = config.dbcachedir+"/"+dbfname;
         File cache = new File(dbfname);
         Long filestamp = cache.lastModified();
         // 2 days in miliseconds
-        if (filestamp == 0 || filestamp < (System.currentTimeMillis() - 172800000)) {
+        if (localOnly == false && (filestamp == 0 || filestamp < (System.currentTimeMillis() - 172800000))) {
           logger.log(Level.FINE, "Reading DB : " + url);
           content = readUrlAsString(url);
                     
@@ -100,8 +114,10 @@ public class riSportsDB {
         logger.log(Level.FINE, "Reading DB" + url);
         content = readUrlAsString(url);
       } catch (Exception e) {
-        logger.log(Level.SEVERE, "Error reading DB : " + url);
-        e.printStackTrace();
+        if (ignoreException != true) {
+          logger.log(Level.SEVERE, "Error reading DB : " + url);
+          e.printStackTrace();
+        }
         content = null;
       }
     }

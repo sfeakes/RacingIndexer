@@ -36,18 +36,7 @@ public class riFileMatcher {
       JSONArray jsonArray = new JSONArray(content);
       JSONObject json_data = jsonArray.getJSONObject(0);
       
-      String idLegue = json_data.getString("idLeague");
-      riDetail rid = null;
-      
-      for (int i = 0; i < config.riDetails.size(); i++) {
-        if ( idLegue.compareTo(config.riDetails.get(i).getDBID()) == 0) {
-          rid = config.riDetails.get(i);
-        }
-      }
-      
-      if (rid == null) {
-        rid = new riDetail(json_data.getString("strLeague"), idLegue);
-      }
+      riDetail rid = findriDetail(json_data.getString("strLeague"), json_data.getString("idLeague"));
       
       outputFile = readDB(rid, json_data.getString("strSeason"),
                                       json_data.getIntNoException("intRound"), 
@@ -88,14 +77,29 @@ public class riFileMatcher {
         for (int i = 0; i < jsonArray.length(); i++) {
           JSONObject json_data = jsonArray.getJSONObject(i);
         
-        // Strip FIA & championship from name, replace spaces with andy char regexp
+        // Strip FIA & championship from name, replace spaces with any char regexp
           String league = json_data.getString("strLeague").replaceAll("(?i)(championship|fia)", "");
           league = league.replaceAll(" ", "(\\\\W+)");
-        
-          if (m.group(config.nameMatchGroup).matches("(?i).*"+league+".*"))
+          
+          String leagueAlternate = "";
+          try{
+            leagueAlternate = json_data.getString("strLeagueAlternate").replaceAll("(?i)(championship|fia)", "");
+            leagueAlternate = leagueAlternate.replaceAll(" ", "(\\\\W+)");
+            leagueAlternate = leagueAlternate.replaceAll(",", ".*|.*");
+          } catch (JSONException e) {}
+   
+          if (leagueAlternate == null || leagueAlternate.equals("") || leagueAlternate.equals("null") || leagueAlternate.equals("(\\\\W+)"))
+            leagueAlternate = "no alternate to use in matching";
+            
+          logger.log(Level.FINER, ("TESTING for Match " + m.group(config.nameMatchGroup))+" to .*"+league+".* or .*"+leagueAlternate+".*");
+          
+          if (m.group(config.nameMatchGroup).matches("(?i).*"+league+".*") || 
+              m.group(config.nameMatchGroup).matches("(?i).*"+leagueAlternate+".*"))
           {
             logger.log(Level.FINER, ("MATCHED " + m.group(config.nameMatchGroup))+" to "+json_data.getString("strLeague"));
-            riDetail rid = new riDetail(json_data.getString("strLeague"), json_data.getString("idLeague"));
+            
+            riDetail rid = findriDetail(json_data.getString("strLeague"), json_data.getString("idLeague"));
+            
             outputFile = readDB(rid, m.group(config.yearMatchGroup),
                 Integer.parseInt(m.group(config.roundMatchGroup)), m.group(config.titleMatchGroup),
                 m.group(config.extraMatchGroup), getFileExtension(filename));
@@ -110,6 +114,22 @@ public class riFileMatcher {
 
   }
 
+  private riDetail findriDetail(String strLeague, String idLegue)
+  {
+    riDetail rid = null;
+    
+    // Go back and check the config, see if an ID matches.
+    for (int j = 0; j < config.riDetails.size(); j++) {
+      if ( idLegue.compareTo(config.riDetails.get(j).getDBID()) == 0) {
+        rid = config.riDetails.get(j);
+      }
+    }
+    if (rid == null)
+       rid = new riDetail(strLeague, idLegue);
+    
+    return rid;
+  }
+  
   public String getOutputFile() {
     return outputFile;
   }
@@ -134,9 +154,14 @@ public class riFileMatcher {
     String circuit;
     int round;
     
-    String output = config.outputDirectory + config.outputFormat + extension;
+    String output;
+    
+    if (rid.getOutputFormat() == null) 
+      output = config.outputDirectory + config.outputFormat + extension;
+    else
+      output = config.outputDirectory + rid.getOutputFormat() + extension;
 
-    String content = riSportsDB.lookupSeason(fyear,  rid.getDBID());
+    String content = riSportsDB.lookupSeason(fyear,  rid.getDBID(), rid.onlylocalDB());
     
     if (content == null)
       return null;
@@ -271,7 +296,11 @@ public class riFileMatcher {
       output = output.replaceAll("\\{y\\}", city);
       output = output.replaceAll("\\{r\\}", String.format("%02d", round));
       output = output.replaceAll("\\{rq\\}", racetype);
+      
+      if ( output.contains("{cd}"))
+        output = output.replaceAll("\\{cd\\}", getDemonym(country));
 
+      
       logger.log(Level.FINE, "New Filename : " + output);
       
       if (config.summaryFile == true) {
@@ -357,5 +386,18 @@ public class riFileMatcher {
       return dateString;
     }
     return ldf.format(date);
+  }
+  
+  private String getDemonym (String country) {
+    try {
+      String demonym_content = riSportsDB.lookupDemonym(country);
+      JSONArray jsondemonymArray = new JSONArray(demonym_content);
+      String demonym = jsondemonymArray.getJSONObject(0).getStringNoException("demonym");
+    
+      return demonym;
+    } catch (Exception e) {
+      logger.log(Level.FINE, "No Demonym returned for country '" + country + "'");
+      return country;
+    }
   }
 }

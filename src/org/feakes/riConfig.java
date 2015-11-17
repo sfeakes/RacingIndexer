@@ -153,13 +153,15 @@ public class riConfig extends Properties {
         try {
           if (super.getProperty("type"+i+"Name") == null)
             break;
-
+          
           riDetails.add(new riDetail(super.getProperty("type"+i+"Name"), 
                                      super.getProperty("type"+i+"DBID"),
                                      super.getProperty("type"+i+"Regex"),
                                      getStringProperty("type"+i+"raceSuffix"),
                                      getStringProperty("type"+i+"qualSuffix"),
-                                     getStringProperty("type"+i+"IgnoreRegex")));
+                                     getStringProperty("type"+i+"IgnoreRegex"),
+                                     getStringProperty("type"+i+"outputFormat"),
+                                     getBooleanProperty("type"+i+"localDB")));
         } catch (NullPointerException e) {
           break;
         }

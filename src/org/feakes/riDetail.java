@@ -12,7 +12,19 @@ public class riDetail {
   private String _raceSuffix = "";
   private String _qualSuffix = "";
   private String _ignoreRegex = null;
+  private String _outputFormat = null;
+  private boolean _localDBonly = false;
 
+  riDetail(String typeName, String typeDBID, String typeRegexp, String raceSuffix, String qualSuffix, String ignoreRegex, String outputFormat, boolean localDBonly) {
+    
+    this(typeName, typeDBID, typeRegexp, raceSuffix, qualSuffix, ignoreRegex);
+    
+    if (outputFormat != null)
+      _outputFormat = outputFormat;
+    
+    _localDBonly = localDBonly;
+  }
+  
   riDetail(String typeName, String typeDBID, String typeRegexp, String raceSuffix, String qualSuffix, String ignoreRegex) {
     
     this(typeName, typeDBID, typeRegexp, raceSuffix, qualSuffix);
@@ -80,6 +92,14 @@ public class riDetail {
   public boolean useQualifying()
   {
     return _checkQual;
+  }
+  public String getOutputFormat()
+  {
+    return _outputFormat;
+  }
+  public boolean onlylocalDB()
+  {
+    return _localDBonly;
   }
   
   public String toString()

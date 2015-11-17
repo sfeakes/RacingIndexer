@@ -96,7 +96,9 @@ qualifyingregexp=(?i)(.*)(qualifying|qual|quali)(.*)
 # typeXIgnoreRegex = <optional> if you want to ignore certian files, this regex is used. (for F1 below, it will ignore any file with Pre or Post in the filename
 # typeXraceSuffix = <optional> Word to use in filename to indicate it's a race. If you want to start with a leading space, you must use "
 # typeXqualSuffix = <optional> Word to use in filename to indicate it's a qualifying. If you want to start with a leading space, you must use "
-# 
+# typeXoutputFormat = <optional> Specific output format, same rules and options as outputFormat
+# typeXlocalDB = <optional> true | false - Will only use local DB for lookups. DB must exist in cache and be JSON format, named typeDBID-Season.ridb (mydb-2016.ridb)
+#
 # You can have as many of these as you like, but you must replace X with a number and it MUST start a 1 and be in sequance.
 
 type1Name = Formula 1
@@ -105,6 +107,7 @@ type1Regex = (?i).*(Formula\\W*1|Formula\\W*one).*
 type1IgnoreRegex = (?i).*(\\W|^)(Pre\\W|Post\\W).*
 type1raceSuffix = " Race"
 type1qualSuffix = " Qualifying"
+type1outputFormat = \\{n}\\{n} - {s}\\{n} - {d} - Round {r} - {cd} Grand Prix {s}{rq}
 
 type2Name = MotoGP
 type2DBID = 4407
@@ -114,4 +117,7 @@ type3Name = WRC
 type3DBID = 4409
 type3Regex = (?i).*(wrc|world\\W*rally\\W*champ.*).*
 
-
+type4Name = Dakar
+type4DBID = Dakar
+type4Regex = (?i).*(Dakar).*
+type4localDB = true
