@@ -1,0 +1,22 @@
+idLeague,dateEvent,strSeason,strLeague,strEvent,intRound,strCircuit,strCountry,strCity,strCountrystrDescriptionEN
+999901,2016-01-02,2016,Dakar,Dakar,0,Buenos Aires,Argentina,Buenos Aires,"Dakar 2016 race day 0,  Start podium in Buenos Aires / Prologue / Liaison to Bivouac ""0"" close to Rosario"
+999901,2016-01-03,2016,Dakar,Dakar,1,Buenos Aires - Villa Carlos Paz,Argentina,Buenos Aires,"Dakar 2016 race day 1,  Start from Buenos Aires finish at Villa Carlos Paz"
+999901,2016-01-04,2016,Dakar,Dakar,2,Villa Carlos Paz - Termas de Río Hondo,Argentina,Villa Carlos Paz,"Dakar 2016 race day 2,  Start from Villa Carlos Paz finish at Termas de Río Hondo"
+999901,2016-01-05,2016,Dakar,Dakar,3,Termas de Río Hondo - Jujuy,Argentina,Termas de Río Hondo,"Dakar 2016 race day 3,  Start from Termas de Río Hondo finish at Jujuy"
+999901,2016-01-06,2016,Dakar,Dakar,4,Jujuy - Jujuy,Argentina,Jujuy,"Dakar 2016 race day 4,  Start from Jujuy finish at Jujuy"
+999901,2016-01-07,2016,Dakar,Dakar,5,Jujuy - Uyuni,Argentina,Jujuy,"Dakar 2016 race day 5,  Start from Jujuy finish at Uyuni"
+999901,2016-01-08,2016,Dakar,Dakar,6,Uyuni - Uyuni,Argentina,Uyuni,"Dakar 2016 race day 6,  Start from Uyuni finish at Uyuni"
+999901,2016-01-09,2016,Dakar,Dakar,7,Uyuni - Salta,Bolivia,Uyuni,"Dakar 2016 race day 7,  Start from Uyuni finish at Salta"
+999901,2016-01-10,2016,Dakar,Dakar,8,Rest day in Salta,Bolivia,Salta,"Dakar 2016 race day 8,  Rest day in Salta"
+999901,2016-01-11,2016,Dakar,Dakar,9,Salta - Belén,Bolivia,Salta,"Dakar 2016 race day 9,  Start from Salta finish at Belén"
+999901,2016-01-12,2016,Dakar,Dakar,10,Belén - Belén,Bolivia,Belén,"Dakar 2016 race day 10,  Start from Belén finish at Belén"
+999901,2016-01-13,2016,Dakar,Dakar,11,Belén - La Rioja,Argentina,Belén,"Dakar 2016 race day 11,  Start from Belén finish at La Rioja"
+999901,2016-01-14,2016,Dakar,Dakar,12,La Rioja - San Juan,Argentina,La Rioja,"Dakar 2016 race day 12,  Start from La Rioja finish at San Juan"
+999901,2016-01-15,2016,Dakar,Dakar,13,San Juan - Villa Carlos Paz,Argentina,San Juan,"Dakar 2016 race day 13,  Start from San Juan finish at Villa Carlos Paz"
+999901,2016-01-16,2016,Dakar,Dakar,14,Villa Carlos Paz - Rosario,Argentina,Villa Carlos Paz,"Dakar 2016 race day 14,  Start from Villa Carlos Paz finish at Rosario"
+
+
+
+Used below to convert CSV to JSON
+http://codebeautify.org/csv-to-xml-json
+http://www.convertcsv.com/csv-to-json.htm
