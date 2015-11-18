@@ -12,7 +12,7 @@ fi
 
 case $1 in
   -h | --help | help | -v | --version)
-    /usr/bin/java -jar "$APP_ROOT/racingIndexer.jar -h"
+    /usr/bin/java -jar "$APP_ROOT/racingIndexer.jar" -h
   exit 0
 ;;  
 esac

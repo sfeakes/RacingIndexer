@@ -12,7 +12,7 @@
             <packagesToSeal/>
             <packagesToUnSeal/>
         </sealing>
-		<attribute name="Implementation-Version" value="${now}"/>
+		<attribute name="ImplementationVersion" value="${now}"/>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
         <javaElement handleIdentifier="=RacingIndexer/src"/>
