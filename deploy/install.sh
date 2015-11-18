@@ -18,14 +18,9 @@ chmod 666 $CACHE
 
 DEPLOYEDFILES='racingIndexer.jar racingIndexer.sh racingIndexer.prop.example'
 
-# download git deploy directory for lib
-#git https://github.com/sfeakes/RacingIndexer/tree/master/deploy
-#git clone ssh://host/repo.git ~/
-
 for file in $DEPLOYEDFILES; do
-#wget "https://github.com/sfeakes/RacingIndexer/blob/master/deploy/$file?raw=true" -O "$LIB/$file"
-echo Getting $file
-  curl -o "$LIB/$file" "https://github.com/scrakes/RacingIndexer/blob/master/deploy/$file?raw=true"
+  echo Getting $file
+  curl -o "$LIB/$file" "https://raw.githubusercontent.com/sfeakes/RacingIndexer/master/deploy/$file"
 done
 
 echo 
