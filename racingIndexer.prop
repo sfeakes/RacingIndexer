@@ -121,3 +121,9 @@ type4Name = Dakar
 type4DBID = Dakar
 type4Regex = (?i).*(Dakar).*
 type4localDB = true
+
+type5Name = Red Bull Hard Enduro
+type5DBID = HardEnduro
+type5Regex = (?i).*(Red\\W*Bull\\W*Hard\\W*Enduro|Hard\\W*Enduro|HardEnduro|RedBull\\W*Hard\\W*Enduro|RedBull\\W*HardEnduro).*
+type5localDB = true
+type1outputFormat = \\{n}\\{n} - {s}\\{n} - {d} - Round {r} - {e}, {c}

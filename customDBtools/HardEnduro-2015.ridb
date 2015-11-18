@@ -1,0 +1,77 @@
+[
+    {
+        "idLeague": "999902",
+        "dateEvent": "2015-02-14",
+        "strSeason": "2015",
+        "strLeague": "Red Bull Hard Enduro",
+        "strEvent": "Hells Gate",
+        "intRound": "1",
+        "strCircuit": "Il Ciocco",
+        "strCountry": "Itally",
+        "strCity": "Il Ciocco",
+        "strCountrystrDescriptionEN": "The world’s top enduro riders descended on the Italian resort of Il Ciocco for Hell’s Gate 2016. The first big Hard Enduro event of the year takes place on the treacherous slopes of the Apennine Mountains"
+    },
+    {
+        "idLeague": "999902",
+        "dateEvent": "2015-03-07",
+        "strSeason": "2015",
+        "strLeague": "Red Bull Hard Enduro",
+        "strEvent": "The Tough One",
+        "intRound": "2",
+        "strCircuit": "Nantmawr Quarry",
+        "strCountry": "UK",
+        "strCity": "Nantmawr Quarry",
+        "strCountrystrDescriptionEN": "Britain’s most famous hard enduro race returned to the place where it all started – Nantmawr Quarry on the Welsh border – providing riders and spectators with warm temperatures and sunshine."
+    },
+    {
+        "idLeague": "999902",
+        "dateEvent": "2015-04-06",
+        "strSeason": "2015",
+        "strLeague": "Red Bull Hard Enduro",
+        "strEvent": "Hare Scramble, Erzbergrodeo",
+        "intRound": "3",
+        "strCircuit": "Eisenerz",
+        "strCountry": "Austria",
+        "strCity": "Eisenerz",
+        "strCountrystrDescriptionEN": "The toughest single day off-road race in the world returned to the Iron Ore mountain for the 21st edition of the Erzbergrodeo. The crown jewel of the Hard Enduro Series saw 500 riders set off, but only a handful would reach the finish line. See how all the action unfolded!"
+    },
+    {
+        "idLeague": "999902",
+        "dateEvent": "2015-07-14",
+        "strSeason": "2015",
+        "strLeague": "Red Bull Hard Enduro",
+        "strEvent": "Romaniacs",
+        "intRound": "4",
+        "strCircuit": "Sibiu",
+        "strCountry": "Romania",
+        "strCity": "Sibiu",
+        "strCountrystrDescriptionEN": "Set in the Carpathian Mountains, Red Bull Romaniacs is the longest race of the Hard Enduro season. It starts with a brutal scramble through the streets of Sibiu, and then moves in to 4 days of racing through terrain that would make a mountain goat sweat. "
+    },
+    {
+        "idLeague": "999902",
+        "dateEvent": "2015-09-05",
+        "strSeason": "2015",
+        "strLeague": "Red Bull Hard Enduro",
+        "strEvent": "Megawatt 111",
+        "intRound": "5",
+        "strCircuit": "Belchatow",
+        "strCountry": "Poland",
+        "strCity": "Belchatow",
+        "strCountrystrDescriptionEN": "The running of Tadeusz Blazusiak's signature event is over 60km of Motocross, Endurocross, and Hard Enduro - along with a track that is as unforgiving as it is varied. 111 Megawatt combines three disciplines into one unforgettable race."
+    },
+    {
+        "idLeague": "999902",
+        "dateEvent": "2015-10-12",
+        "strSeason": "2015",
+        "strLeague": "Red Bull Hard Enduro",
+        "strEvent": "Sea to Sky",
+        "intRound": "6",
+        "strCircuit": "Kemer",
+        "strCountry": "Turky",
+        "strCity": "Kemer",
+        "strCountrystrDescriptionEN": "The final Hard Enduro race of the year is Red Bull Sea to Sky, a three-day rally that takes riders from the gorgeous beaches of the Turkish Rivera to the peak of Mount Olympus in what is described as, \"the most enjoyable\" event of the season."
+    },
+    {
+        "idLeague": ""
+    }
+]

@@ -146,6 +146,9 @@ public class RacingIndexer {
               if (i < args.length && args[i].matches("^\\d+$"))
                 eventID = args[i++];
               break;
+            case 'h':
+                printUsage();
+                return;
             default:
               logger.log(Level.WARNING, "ParseCmdLine: illegal option passed " + flag);
               break;
