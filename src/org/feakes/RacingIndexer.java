@@ -42,7 +42,7 @@ public class RacingIndexer {
   private final static Logger logger = Logger.getLogger(RacingIndexer.class.getName());
 
   private static void printUsage() {
-    System.out.println("Usage: " + RacingIndexer.class.getName() + " [-rfdwt] [-config afile] filename");
+    System.out.println("Usage: " + RacingIndexer.class.getName() + " [options] [-config afile] filename");
     System.out.println("  -r = read all filed if a directory is passed as filename");
     System.out.println("  -f = if output file exists, overwrite is");
     System.out.println("  -d = Debug messages");
