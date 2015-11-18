@@ -43,6 +43,7 @@ public class RacingIndexer {
 
   private static void printUsage() {
     System.out.println("Usage: " + RacingIndexer.class.getName() + " [options] [-config afile] filename");
+    System.out.println("  -h = help");
     System.out.println("  -r = read all filed if a directory is passed as filename");
     System.out.println("  -f = if output file exists, overwrite is");
     System.out.println("  -d = Debug messages");
@@ -50,7 +51,8 @@ public class RacingIndexer {
     System.out.println("  -t = test mode, just print outut");
     System.out.println("  -s = just create summary files");
     System.out.println("  -i <ID> just download images for leagues, config file will be used for ID's if ID is not passed");
-    System.out.println("  -e <eventID> Don't try to match file name, force match with Event ID from www.thesportsdb.com"); 
+    System.out.println("  -e <eventID> Don't try to match file name, force match with Event ID from www.thesportsdb.com");
+    System.out.println("Version : " + RacingIndexer.class.getName() + " Version = "+ RacingIndexer.class.getPackage().getImplementationVersion());
   }
 
   public static void main(String[] args) {
