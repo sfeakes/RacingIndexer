@@ -25,20 +25,20 @@ DEPLOYEDFILES='racingIndexer.jar racingIndexer.sh racingIndexer.prop.example'
 for file in $DEPLOYEDFILES; do
 #wget "https://github.com/sfeakes/RacingIndexer/blob/master/deploy/$file?raw=true" -O "$LIB/$file"
 echo Getting $file
-curl -o "$LIB/$file" "https://github.com/scrakes/RacingIndexer/blob/master/deploy/$file?raw=true"
+  curl -o "$LIB/$file" "https://github.com/scrakes/RacingIndexer/blob/master/deploy/$file?raw=true"
 done
 
 echo 
 
 # link bin to script
 if [ -e $BIN/$NAME ]; then
-if [ ! -L $BIN/$NAME ]; then
-echo "Error $BIN/$NAME exists but is not a link to $LIB/$SHNAME"
-fi
+  if [ ! -L $BIN/$NAME ]; then
+    echo "Error $BIN/$NAME exists but is not a link to $LIB/$SHNAME"
+  fi
 else
-ln -s $LIB/$SHNAME $BIN/$NAME
+  ln -s $LIB/$SHNAME $BIN/$NAME
 fi
 
-if [ ! -f $LIB/$PROP ]; then
-echo "Please copy $LIB/$PROPNAME.example to $LIB/$PROPNAME and modify as needed."
+if [ ! -f $LIB/$PROPNAME ]; then
+  echo "Please copy $LIB/$PROPNAME.example to $LIB/$PROPNAME and modify as needed."
 fi
