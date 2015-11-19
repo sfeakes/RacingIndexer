@@ -52,7 +52,7 @@ public class RacingIndexer {
     System.out.println("  -s = just create summary files");
     System.out.println("  -i <ID> just download images for leagues, config file will be used for ID's if ID is not passed");
     System.out.println("  -e <eventID> Don't try to match file name, force match with Event ID from www.thesportsdb.com");
-    System.out.println("Version : " + RacingIndexer.class.getName() + " Version = "+ RacingIndexer.class.getPackage().getImplementationVersion());
+    System.out.println("Version : " + RacingIndexer.class.getName() + " Build = "+ RacingIndexer.class.getPackage().getImplementationVersion());
   }
 
   public static void main(String[] args) {

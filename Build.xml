@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="racingIndexer" default="racingIndexer" basedir=".">
+  <target name ="./deploy/racingIndexer" description="Create a jar for the racingIndexer project">
+  <tstamp prefix="build-info">
+     <format property="version" pattern="yyMMdd" />
+   </tstamp>
+    <jar jarfile="./deploy/racingIndexer.jar" includes="**/*.class" basedir="./bin">
+	  <manifest>
+	    <attribute name="Main-Class" value="org.feakes.RacingIndexer"/>
+		<attribute name="Implementation-Version" value="${build-info.version}" />
+	  </manifest>
+	</jar>
+  </target>
+</project>
