@@ -2,7 +2,7 @@
 <project name="racingIndexer" default="racingIndexer" basedir=".">
   <target name ="./deploy/racingIndexer" description="Create a jar for the racingIndexer project">
   <tstamp prefix="build-info">
-     <format property="version" pattern="yyMMdd" />
+     <format property="version" pattern="yyMMdd.HH" timezone="GMT"/>
    </tstamp>
     <jar jarfile="./deploy/racingIndexer.jar" includes="**/*.class" basedir="./bin">
 	  <manifest>
