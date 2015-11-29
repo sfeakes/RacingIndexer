@@ -391,7 +391,7 @@ public class riFileMatcher {
   
   private String getDemonym (String country) {
     try {
-      String demonym_content = riSportsDB.lookupDemonym(URLEncoder.encode(country, "UTF-8"));
+      String demonym_content = riSportsDB.lookupDemonym(URLEncoder.encode(country, "UTF-8").replaceAll("\\+", "%20"));
       JSONArray jsondemonymArray = new JSONArray(demonym_content);
       String demonym = jsondemonymArray.getJSONObject(0).getStringNoException("demonym");
       logger.log(Level.FINE, "Demonym returned for country '" + country + "' is '" + demonym +"'");
