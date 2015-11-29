@@ -1,5 +1,6 @@
 package org.feakes;
 
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -390,10 +391,10 @@ public class riFileMatcher {
   
   private String getDemonym (String country) {
     try {
-      String demonym_content = riSportsDB.lookupDemonym(country);
+      String demonym_content = riSportsDB.lookupDemonym(URLEncoder.encode(country, "UTF-8"));
       JSONArray jsondemonymArray = new JSONArray(demonym_content);
       String demonym = jsondemonymArray.getJSONObject(0).getStringNoException("demonym");
-    
+      logger.log(Level.FINE, "Demonym returned for country '" + country + "' is '" + demonym +"'");
       return demonym;
     } catch (Exception e) {
       logger.log(Level.FINE, "No Demonym returned for country '" + country + "'");
