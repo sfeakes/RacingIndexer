@@ -1,0 +1,74 @@
+{"events":[
+  {
+    "idLeague": 999902,
+    "dateEvent": "2015-12-05",
+    "strSeason": 2016,
+    "strLeague": "SuperEnduro",
+    "strEvent": "GP Poland",
+    "intRound": 1,
+    "strCircuit": "Lodz/Atlas Arena",
+    "strCountry": "Poland",
+    "strCity": "Lodz",
+    "strCountrystrDescriptionEN": "Poland - Lodz/Atlas Arena"
+  },
+  {
+    "idLeague": 999902,
+    "dateEvent": "2016-01-02",
+    "strSeason": 2016,
+    "strLeague": "SuperEnduro",
+    "strEvent": "GP Germany",
+    "intRound": 2,
+    "strCircuit": "Riesa/SachsenArena",
+    "strCountry": "Germany",
+    "strCity": "Riesa",
+    "strCountrystrDescriptionEN": "Germany - Riesa/SachsenArena"
+  },
+  {
+    "idLeague": 999902,
+    "dateEvent": "2016-01-16",
+    "strSeason": 2016,
+    "strLeague": "SuperEnduro",
+    "strEvent": "GP Italy",
+    "intRound": 3,
+    "strCircuit": "Cancel",
+    "strCountry": "Italy",
+    "strCity": "Cancel",
+    "strCountrystrDescriptionEN": "Italy - Cancel"
+  },
+  {
+    "idLeague": 999902,
+    "dateEvent": "2016-02-20",
+    "strSeason": 2016,
+    "strLeague": "SuperEnduro",
+    "strEvent": "GP AMV Argentina",
+    "intRound": 4,
+    "strCircuit": "Pinamar",
+    "strCountry": "Argentina",
+    "strCity": "Pinamar",
+    "strCountrystrDescriptionEN": "Argentina - Pinamar"
+  },
+  {
+    "idLeague": 999902,
+    "dateEvent": "2016-02-27",
+    "strSeason": 2016,
+    "strLeague": "SuperEnduro",
+    "strEvent": "GP Brazil",
+    "intRound": 5,
+    "strCircuit": "Belo Horizonte/Mineirinho",
+    "strCountry": "Brazil",
+    "strCity": "Belo Horizonte",
+    "strCountrystrDescriptionEN": "Brazil - Belo Horizonte/Mineirinho"
+  },
+  {
+    "idLeague": 999902,
+    "dateEvent": "2016-03-12",
+    "strSeason": 2016,
+    "strLeague": "SuperEnduro",
+    "strEvent": "GP Czech Republic",
+    "intRound": 6,
+    "strCircuit": "Prague/Tipsport Arena",
+    "strCountry": "Czech Republic",
+    "strCity": "Prague",
+    "strCountrystrDescriptionEN": "Czech Republic - Prague/Tipsport Arena"
+  }
+]}
