@@ -17,4 +17,4 @@ case $1 in
 ;;  
 esac
 
-/usr/bin/java -jar "$APP_ROOT/racingIndexer.jar" -f -cfg "$APP_CFG" "$@"
+/usr/bin/java -jar "$APP_ROOT/racingIndexer.jar" -cfg "$APP_CFG" "$@"
