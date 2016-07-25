@@ -212,6 +212,9 @@ public class riFileMatcher {
         } 
         
         // score the event match (unlightly this matches)
+        // NSF need to escape (or maybe delete) any of the following \.[]{}()*+-?^$| in the event variable below, try one of the below
+        //     event.replaceAll("([\\\\\\.\\[\\{\\(\\*\\+\\?\\^\\$\\|])", "\\\\$1");
+        //     event.replaceAll("[\\<\\(\\[\\{\\\\\\^\\-\\=\\$\\!\\|\\]\\}\\)\\?\\*\\+\\.\\>]", "\\\\$0");
         if (fname.matches("(?i).*" + event + ".*")) {
           score[i] += MATCH_EVENT;
           logger.log(Level.FINEST, "   - Matched event");
